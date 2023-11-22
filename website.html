@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+
+    header h1 {
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    main p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    footer {
+      background-color: #f0f0f0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+  <script>
+    async function getTopics() {
+      try {
+        const topics = await document.browsingTopics();
+        console.log('Retrieved topics:', topics);
+        return topics;
+      } catch (error) {
+        console.error('Error retrieving topics:', error);
+        return [];
+      }
+    }
+
+    (async () => {
+      const topics = await getTopics();
+      console.log('User Topics:', topics);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <h1>My Website</h1>
+  </header>
+
+  <main>
+    <p>Welcome to my website! This is a basic website that I created using HTML, CSS, and the Topics API.</p>
+    <img src="https://picsum.photos/200/300" alt="Image description">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu quam eu enim aliquam faucibus. Nullam tristique, enim quis tincidunt tincidunt, lectus quam semper mauris, vitae semper odio quam id diam. Sed et justo vel enim semper tincidunt. Sed at quam et libero semper faucibus. Nunc sit amet quam eget enim semper mollis.</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 My Website</p>
+  </footer>
+</body>
+</html>
