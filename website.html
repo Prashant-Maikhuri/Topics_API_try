@@ -44,20 +44,28 @@
     }
   </style>
   <script>
-    async function getTopics() {
-      try {
-        const topics = await document.browsingTopics();
-        console.log('Retrieved topics:', topics);
-        return topics;
-      } catch (error) {
-        console.error('Error retrieving topics:', error);
-        return [];
-      }
-    }
-
     (async () => {
-      const topics = await getTopics();
-      console.log('User Topics:', topics);
+      try {
+        // Check for browser compatibility
+        const compatible = await navigator.permissions.query({
+          name: 'interest-cohort',
+        });
+
+        if (compatible.state === 'granted') {
+          // Get user's topics
+          const topics = await document.browsingTopics();
+          console.log('User Topics:', topics);
+
+          // Use topics for personalization or advertising
+          // ...
+        } else {
+          console.warn('User has not granted permission to use Topics API');
+          // Handle no permission case
+          // ...
+        }
+      } catch (error) {
+        console.error('Error retrieving or checking permissions:', error);
+      }
     })();
   </script>
 </head>
